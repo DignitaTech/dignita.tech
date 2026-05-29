@@ -7,18 +7,13 @@ const Spline = lazy(() => import("@splinetool/react-spline"));
 interface SplineSceneProps {
   scene: string;
   className?: string;
+  onLoad?: () => void;
 }
 
-export function SplineScene({ scene, className }: SplineSceneProps) {
+export function SplineScene({ scene, className, onLoad }: SplineSceneProps) {
   return (
-    <Suspense
-      fallback={
-        <div className="flex h-full w-full items-center justify-center">
-          <div className="h-7 w-7 animate-spin rounded-full border-2 border-primary/30 border-t-primary" />
-        </div>
-      }
-    >
-      <Spline scene={scene} className={className} />
+    <Suspense fallback={null}>
+      <Spline scene={scene} className={className} onLoad={onLoad} />
     </Suspense>
   );
 }
