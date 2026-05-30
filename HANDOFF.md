@@ -46,9 +46,9 @@ curl -s -o /dev/null -w "%{http_code}\n" https://www.dignita.tech/branding/kipi-
 - Hex de paleta sampleados a mano desde las páginas de color del PDF (ver `proyectos[].palette` en `ecosystem.ts`).
 
 ## Formulario de contacto
-- Web3Forms. Key en Vercel env `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` = `2ebfb9fb-8d3e-4529-befd-5f940b7bb583`.
-- Local: está en `.env.local` (gitignored) — si falta, copiar la key ahí.
-- Entrega a **leonidas.yauri@dignita.tech**. (Pendiente: confirmar que llega el correo de prueba.)
+- Web3Forms. Key esperada `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` = `2ebfb9fb-8d3e-4529-befd-5f940b7bb583`.
+- 🔴 **BUG (2026-05-30): el form está ROTO en producción.** El env `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` está **vacío (`""`)** en Vercel prod y en `.env.local`. Como es `NEXT_PUBLIC` (inline en build), el form hace `if(!ACCESS_KEY) setStatus("error")` y nunca envía. **Fix:** setear la key (`vercel env add` / dashboard) en prod **y** local, **redeploy** (no basta cambiar el env, hay que rebuildear), y probar el envío **desde el navegador** (Web3Forms rechaza POST server-side/curl — "Use our API in client side"; solo plan Pro permite server IP).
+- Entrega a **leonidas.yauri@dignita.tech** (según la cuenta dueña del access key). Pendiente: confirmar recepción tras el fix.
 
 ## Comandos
 ```bash
@@ -71,7 +71,9 @@ vercel --yes --prod --scope dignitatechs-projects   # deploy manual
 
 ## Pendientes / Fase 2
 1. **Confirmar producción 200** en todas las rutas (ver arriba).
-2. Confirmar que el formulario entrega correo a leonidas.yauri@dignita.tech.
+2. 🔴 **Arreglar el formulario** (env key vacía en prod — ver sección "Formulario de contacto") y confirmar entrega a leonidas.yauri@dignita.tech.
+   - SEO: ✅ `sitemap.xml` + `robots.txt` ya generados (`src/app/{sitemap,robots}.ts`, autoalimentados de `ecosystem.ts`).
+   - CMS: pendiente elegir uno para editar el contenido de las páginas sin tocar código (hoy todo vive en `src/lib/ecosystem.ts`).
 3. Brandbooks descargables (comprimir/hostear PDFs) + link en `/proyectos`.
 4. Documentar **Mi Rest con IA** (hoy `published:false`; cuando tenga brandbook, extraer assets y poblar el case study — mismo patrón que CRU/Kipi).
 5. Revisar e integrar **Genera** (genera.dignita.tech).
