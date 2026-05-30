@@ -14,6 +14,17 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+export interface ServiceCta {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+export interface ProcessStep {
+  title: string;
+  description: string;
+}
+
 export interface CatalogItem {
   title: string;
   description: string;
@@ -22,10 +33,19 @@ export interface CatalogItem {
   status?: "Activo" | "Próximamente" | "En revisión" | "Listo";
   icon: LucideIcon;
   cta?: string;
+  /** campos de la landing de detalle (servicios) */
+  slug?: string;
+  summary?: string;
+  problem?: string;
+  deliverables?: string[];
+  process?: ProcessStep[];
+  primaryCta?: ServiceCta;
+  secondaryCta?: ServiceCta;
 }
 
 export const servicios: CatalogItem[] = [
   {
+    slug: "automatizacion-e-ia",
     title: "Automatización e IA estratégica",
     description: "Nuestro servicio insignia: convertimos el trabajo manual en flujos ágiles, controlables y trazables.",
     href: "/",
@@ -33,48 +53,150 @@ export const servicios: CatalogItem[] = [
     status: "Activo",
     icon: Workflow,
     cta: "Ver",
+    summary:
+      "Convertimos el trabajo manual en flujos ágiles, controlables y trazables. Nuestro servicio insignia.",
+    problem:
+      "Equipos atrapados en tareas repetitivas, datos dispersos y procesos que dependen de que alguien se acuerde. El costo no es solo tiempo: es error, retraso y falta de visibilidad.",
+    deliverables: [
+      "Diagnóstico operativo y mapa de procesos",
+      "Automatización de flujos (RPA + integraciones)",
+      "Agentes y asistentes con IA aplicada",
+      "Tableros de control y trazabilidad",
+      "Soporte y mejora continua",
+    ],
+    process: [
+      { title: "Diagnóstico", description: "Entramos por el dolor operativo real y mapeamos el proceso." },
+      { title: "Priorización", description: "Elegimos dónde la automatización rinde más, rápido." },
+      { title: "Mecanismo correcto", description: "RPA, integración o IA — la herramienta que de verdad encaja." },
+      { title: "Mejora visible y sostenida", description: "Ejecutamos una mejora medible y la mantenemos en el tiempo." },
+    ],
+    primaryCta: { label: "Ver el servicio completo", href: "/" },
+    secondaryCta: { label: "Agendar diagnóstico", href: "/contacto" },
   },
   {
+    slug: "soporte-ti",
     title: "Soporte TI",
     description: "Mesa de ayuda y soporte de infraestructura para que tu operación nunca se detenga.",
     href: "https://soporte.dignita.tech",
     external: true,
     status: "Próximamente",
     icon: Headset,
+    summary:
+      "Mesa de ayuda y soporte de infraestructura para que tu operación nunca se detenga.",
+    problem:
+      "Cuando un equipo, una red o un servicio se cae, cada minuto cuesta. Sin un soporte que responda, los problemas pequeños se vuelven paros grandes.",
+    deliverables: [
+      "Mesa de ayuda (help desk) para usuarios",
+      "Soporte y monitoreo de infraestructura",
+      "Gestión de incidentes con SLA",
+      "Mantenimiento preventivo",
+      "Respaldo y continuidad del negocio",
+    ],
+    primaryCta: { label: "Solicitar soporte", href: "/contacto" },
+    secondaryCta: { label: "Ir al portal de soporte", href: "https://soporte.dignita.tech", external: true },
   },
   {
+    slug: "soporte-rpa",
     title: "Soporte RPA",
     description: "Mantenimiento y continuidad de tus automatizaciones y bots en producción.",
     href: "https://soporterpa.dignita.tech",
     external: true,
     status: "Activo",
     icon: Bot,
+    summary:
+      "Mantenimiento y continuidad de tus automatizaciones y bots en producción.",
+    problem:
+      "Un bot que se rompe en silencio es peor que no tener bot: el proceso falla sin que nadie lo note. Las automatizaciones necesitan quien las cuide.",
+    deliverables: [
+      "Monitoreo de bots y flujos en producción",
+      "Corrección ante cambios de sistemas o interfaces",
+      "Optimización y nuevas reglas de negocio",
+      "Alertas y reportes de ejecución",
+      "SLA de respuesta ante incidentes",
+    ],
+    primaryCta: { label: "Solicitar soporte RPA", href: "/contacto" },
+    secondaryCta: { label: "Ir al portal de soporte RPA", href: "https://soporterpa.dignita.tech", external: true },
   },
   {
+    slug: "desarrollo-web",
     title: "Desarrollo web",
     description: "Sitios y aplicaciones web rápidas, modernas y orientadas a conversión.",
     href: "/contacto",
     external: false,
     icon: Code2,
     cta: "Cotizar",
+    summary:
+      "Sitios y aplicaciones web rápidas, modernas y orientadas a conversión.",
+    problem:
+      "Una web lenta, vieja o que no convierte es plata que se va. Hoy el sitio es el primer vendedor de tu marca, y trabaja 24/7.",
+    deliverables: [
+      "Sitios y landing pages de alto rendimiento",
+      "Aplicaciones web a medida",
+      "Integraciones (pagos, CRM, automatización)",
+      "SEO técnico y Core Web Vitals",
+      "Hosting, dominio y mantenimiento",
+    ],
+    process: [
+      { title: "Descubrimiento", description: "Entendemos negocio, audiencia y objetivos de conversión." },
+      { title: "Diseño", description: "Estructura, UX y dirección visual alineadas a la marca." },
+      { title: "Desarrollo", description: "Construcción rápida, accesible y optimizada." },
+      { title: "Lanzamiento", description: "Publicación, medición y mejora continua." },
+    ],
+    primaryCta: { label: "Cotizar mi web", href: "/contacto" },
   },
   {
+    slug: "branding",
     title: "Branding",
     description: "Identidad de marca con criterio: estrategia, naming y sistema visual.",
     href: "/proyectos",
     external: false,
     icon: Palette,
     cta: "Ver proyectos",
+    summary:
+      "Identidad de marca con criterio: estrategia, naming y sistema visual.",
+    problem:
+      "Una marca sin sistema se ve distinta en cada lugar y no genera recuerdo. La identidad no es un logo: es coherencia con intención.",
+    deliverables: [
+      "Estrategia y posicionamiento de marca",
+      "Naming",
+      "Logotipo y sistema visual",
+      "Paleta, tipografía y aplicaciones",
+      "Brandbook",
+    ],
+    primaryCta: { label: "Ver proyectos de branding", href: "/proyectos" },
+    secondaryCta: { label: "Quiero mi marca", href: "/contacto" },
   },
   {
+    slug: "lanzamiento-de-marca",
     title: "Lanzamiento de marca",
     description: "Branding + desarrollo web + comunicación, en un solo frente de lanzamiento.",
     href: "/contacto",
     external: false,
     icon: Rocket,
     cta: "Cotizar",
+    summary:
+      "Branding + desarrollo web + comunicación, en un solo frente de lanzamiento.",
+    problem:
+      "Lanzar por partes —marca por un lado, web por otro, comunicación improvisada— diluye el impacto. Un lanzamiento se gana con todo alineado.",
+    deliverables: [
+      "Identidad de marca completa",
+      "Sitio web de lanzamiento",
+      "Sistema de comunicación y contenidos",
+      "Activación digital",
+      "Acompañamiento en el go-to-market",
+    ],
+    process: [
+      { title: "Estrategia", description: "Posicionamiento, mensaje y plan de lanzamiento." },
+      { title: "Identidad", description: "Marca y sistema visual listos para escalar." },
+      { title: "Plataforma", description: "Web y canales preparados para recibir tráfico." },
+      { title: "Activación", description: "Salida coordinada y medición del impacto." },
+    ],
+    primaryCta: { label: "Planear mi lanzamiento", href: "/contacto" },
   },
 ];
+
+export const getService = (slug: string) =>
+  servicios.find((s) => s.slug === slug);
 
 export const productos: CatalogItem[] = [
   {
