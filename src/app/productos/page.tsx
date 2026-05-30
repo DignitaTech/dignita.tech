@@ -17,7 +17,15 @@ export default function ProductosPage() {
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {productos.map((item, i) => (
-          <CatalogCard key={item.title} item={item} i={i} />
+          <CatalogCard
+            key={item.title}
+            item={
+              item.slug
+                ? { ...item, href: `/productos/${item.slug}`, external: false, cta: "Ver producto" }
+                : item
+            }
+            i={i}
+          />
         ))}
       </div>
     </PageShell>
