@@ -136,6 +136,9 @@ export interface Project {
   description: string;
   status?: string;
   href?: string;
+  image?: string;
+  logo?: string;
+  brandbook?: string;
 }
 
 export const proyectos: Project[] = [
@@ -144,12 +147,14 @@ export const proyectos: Project[] = [
     category: "Branding",
     description: "Identidad de marca para agencia de viajes y tours.",
     status: "Listo",
+    image: "/branding/costa-rica-unlocked/portada.png",
   },
   {
     title: "Kipi.cash",
     category: "Branding",
     description: "Identidad de marca para fintech.",
     status: "Listo",
+    image: "/branding/kipi-cash/portada.png",
   },
   {
     title: "Mi Rest con IA",
