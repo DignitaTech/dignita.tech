@@ -520,6 +520,18 @@ export const casos: SuccessCase[] = [
     ],
     socialUrl: "https://www.instagram.com/crypnita.pe/",
     socialLabel: "@crypnita.pe",
+    gallery: [
+      {
+        src: "/casos/operadores-de-world/orbe.jpg",
+        alt: "Orbe de World verificando identidad — World ID 'Humano Único'",
+        wide: true,
+      },
+      {
+        src: "/casos/operadores-de-world/punto.jpg",
+        alt: "Punto de registro Worldcoin operado por Dignita",
+        wide: false,
+      },
+    ],
   },
 ];
 
