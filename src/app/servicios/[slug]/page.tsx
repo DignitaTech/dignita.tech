@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { ServiceHero } from "@/components/site/service/service-hero";
 import { CaseSection } from "@/components/site/case-study/case-section";
 import { servicios, getService } from "@/lib/ecosystem";
+import { JsonLd } from "@/components/site/json-ld";
 
 export function generateStaticParams() {
   return servicios.filter((s) => s.slug).map((s) => ({ slug: s.slug! }));
@@ -39,8 +40,22 @@ export default async function ServicePage({
   const { problem, deliverables, process } = service;
   const others = servicios.filter((s) => s.slug && s.slug !== slug);
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.summary ?? service.description,
+    url: `https://dignita.tech/servicios/${slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "Dignita",
+      url: "https://dignita.tech",
+    },
+  };
+
   return (
     <>
+      <JsonLd data={serviceJsonLd} />
       <ServiceHero service={service} />
 
       <main className="px-5 pb-24 sm:px-8">

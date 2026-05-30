@@ -4,6 +4,7 @@ import "./globals.css";
 import { AmbientBackground } from "@/components/site/ambient-background";
 import { SiteNav } from "@/components/site/site-nav";
 import { Footer } from "@/components/ui/footer-section";
+import { JsonLd } from "@/components/site/json-ld";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,12 +64,32 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Dignita",
+  url: "https://dignita.tech",
+  logo: "https://dignita.tech/logo-dignita.png",
+  description:
+    "Dignita convierte operaciones manuales, lentas y poco trazables en flujos ágiles, controlables y sostenibles. Automatización operativa, IA aplicada y agentes para áreas administrativas y de soporte.",
+  sameAs: [] as string[],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Dignita",
+  url: "https://dignita.tech",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
         <AmbientBackground />
         <SiteNav />
         {children}

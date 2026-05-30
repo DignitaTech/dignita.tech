@@ -11,6 +11,7 @@ import { CaseGallery } from "@/components/site/case-study/case-gallery";
 import { PaletteRow } from "@/components/site/case-study/palette-row";
 import { TypeSpecimen } from "@/components/site/case-study/type-specimen";
 import { getProject, publishedProjects } from "@/lib/ecosystem";
+import { JsonLd } from "@/components/site/json-ld";
 
 export function generateStaticParams() {
   return publishedProjects.map((p) => ({ slug: p.slug }));
@@ -56,8 +57,28 @@ export default async function CaseStudyPage({
 
   const others = publishedProjects.filter((p) => p.slug !== slug);
 
+  const creativeWorkJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: title,
+    description: project.summary ?? project.description,
+    url: `https://dignita.tech/proyectos/${slug}`,
+    creator: {
+      "@type": "Organization",
+      name: "Dignita",
+      url: "https://dignita.tech",
+    },
+    about: {
+      "@type": "Thing",
+      name: "Branding",
+    },
+    ...(project.cover ? { image: `https://dignita.tech${project.cover}` } : {}),
+    ...(project.year ? { dateCreated: project.year } : {}),
+  };
+
   return (
     <>
+      <JsonLd data={creativeWorkJsonLd} />
       <CaseHero project={project} />
 
       <main className="px-5 pb-24 sm:px-8">
