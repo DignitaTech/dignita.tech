@@ -1,5 +1,3 @@
-import { AmbientBackground } from "@/components/site/ambient-background";
-import { Navbar } from "@/components/site/navbar";
 import { ScrollThread } from "@/components/site/scroll-thread";
 import { Hero } from "@/components/site/hero";
 import { Logos } from "@/components/site/logos";
@@ -10,17 +8,14 @@ import { AreasCarousel } from "@/components/site/areas-carousel";
 import { Process } from "@/components/site/process";
 import { Testimonials } from "@/components/site/testimonials";
 import { CTA } from "@/components/site/cta";
+import { EcosystemBridge } from "@/components/site/ecosystem-bridge";
 import { Diagnostico } from "@/components/site/diagnostico";
-import { Footer } from "@/components/ui/footer-section";
 
 export default function Home() {
   return (
-    <>
-      <AmbientBackground />
-      <Navbar />
-      <div className="relative">
-        <ScrollThread />
-        <main className="relative">
+    <div className="relative">
+      <ScrollThread />
+      <main className="relative">
         <Hero />
         <Logos />
         <ValueProp />
@@ -30,10 +25,9 @@ export default function Home() {
         <Process />
         <Testimonials />
         <CTA />
+        <EcosystemBridge />
         <Diagnostico />
-        </main>
-        <Footer />
-      </div>
-    </>
+      </main>
+    </div>
   );
 }

@@ -36,26 +36,26 @@ const defaultColumns: FooterColumn[] = [
   {
     title: "Servicios",
     links: [
-      { label: "Diagnóstico", href: "#servicios" },
-      { label: "Automatización operativa", href: "#servicios" },
-      { label: "Automatización documental", href: "#servicios" },
-      { label: "IA aplicada y agentes", href: "#servicios" },
+      { label: "Automatización e IA", href: "/" },
+      { label: "Soporte TI / RPA", href: "/servicios" },
+      { label: "Desarrollo web", href: "/servicios" },
+      { label: "Branding", href: "/servicios" },
     ],
   },
   {
-    title: "Continuidad",
+    title: "Ecosistema",
     links: [
-      { label: "Soporte evolutivo", href: "#servicios" },
-      { label: "Observabilidad", href: "#servicios" },
-      { label: "Arquitectura y gobierno", href: "#servicios" },
+      { label: "Productos", href: "/productos" },
+      { label: "Retail", href: "/retail" },
+      { label: "Herramientas", href: "/herramientas" },
     ],
   },
   {
     title: "Firma",
     links: [
-      { label: "Cómo trabajamos", href: "#proceso" },
-      { label: "Casos", href: "#testimonios" },
-      { label: "Contacto", href: "#contacto" },
+      { label: "Proyectos", href: "/proyectos" },
+      { label: "Equipo", href: "/equipo" },
+      { label: "Contacto", href: "/contacto" },
     ],
   },
 ];
