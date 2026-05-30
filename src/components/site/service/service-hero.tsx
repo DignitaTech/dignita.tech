@@ -1,29 +1,8 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import type { CatalogItem, ServiceCta } from "@/lib/ecosystem";
-
-function CtaButton({ cta, primary }: { cta: ServiceCta; primary?: boolean }) {
-  const cls = primary
-    ? "inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-from to-brand-to px-5 py-3 text-sm font-medium text-white transition hover:opacity-90"
-    : "inline-flex items-center gap-2 rounded-full border border-foreground/15 px-5 py-3 text-sm font-medium transition hover:border-foreground/30";
-  const icon = cta.external ? (
-    <ArrowUpRight className="size-4" />
-  ) : (
-    <ArrowRight className="size-4" />
-  );
-  return cta.external ? (
-    <a href={cta.href} target="_blank" rel="noreferrer" className={cls}>
-      {cta.label}
-      {icon}
-    </a>
-  ) : (
-    <Link href={cta.href} className={cls}>
-      {cta.label}
-      {icon}
-    </Link>
-  );
-}
+import { CtaButton } from "@/components/site/cta-button";
+import type { CatalogItem } from "@/lib/ecosystem";
 
 export function ServiceHero({ service }: { service: CatalogItem }) {
   const Icon = service.icon;
