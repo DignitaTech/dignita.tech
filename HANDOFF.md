@@ -11,7 +11,7 @@ Posicionamiento: **automatización-first + hub de ecosistema** (ref: halo-lab.co
 - **Producción:** https://www.dignita.tech (root `dignita.tech` hace 308→www).
 - **GitHub:** https://github.com/DignitaTech/dignita.tech (rama `main`, auto-deploy en cada push).
 - **Vercel:** team `dignitatechs-projects`, proyecto `dignita.tech`.
-- **Último commit:** `20e65ff` (fix tipos Project + portadas brandbook). Build verde, deploy READY.
+- **Último commit:** `04b261f` (case studies de proyecto + landings ricas desde brandbook). Build verde, deploy READY.
 
 ### ⚠️ PRIMER PASO al retomar — verificar producción
 La verificación final quedó interrumpida. Confirmar que ya NO dan 404:
@@ -31,12 +31,16 @@ curl -s -o /dev/null -w "%{http_code}\n" https://www.dignita.tech/branding/kipi-
 - **Fuente única de datos:** `src/lib/ecosystem.ts` (servicios, productos, retail, herramientas, proyectos, casos, equipo).
 - Componentes clave: `src/components/site/{site-nav,catalog-card,page-shell,ecosystem-bridge,diagnostico}.tsx`.
 - `/contacto` y la home reusan `Diagnostico` (formulario + fondo Neural Vortex naranja).
-- `/proyectos`: casos de éxito (Operadores de World +16) + branding con **portadas reales** de Costa Rica Unlocked y Kipi.cash.
+- `/proyectos`: casos de éxito (Operadores de World +16) + branding con **portadas reales**. Las cards publicadas enlazan a su case study.
+- **Case studies `/proyectos/[slug]`** (Costa Rica Unlocked, Kipi.cash): landing rica estilo Halo Lab, vestida con el acento de cada marca, con imágenes extraídas del brandbook (logo, paleta, tipografía, mockups). Ruta dinámica con `generateStaticParams`; Mi Rest queda `published:false` (card "Próximamente", sin ruta).
+- Componentes en `src/components/site/case-study/{case-hero,case-meta,case-section,case-gallery,palette-row,type-specimen}.tsx`. Datos en `ecosystem.ts → proyectos` (tipo `Project` extendido + helpers `publishedProjects`/`getProject`).
 
 ## Assets de branding
-- Brandbooks crudos (PDF, ~83MB y ~50MB) en `./branding/` → **gitignored** (no se suben).
-- Portadas web generadas con `qlmanage` (página 1 del PDF) en `public/branding/{costa-rica-unlocked,kipi-cash}/portada.png` (sí commiteadas).
-- **NO se hostea el PDF completo** (muy pesado). Si se quiere botón "Ver brandbook": comprimir el PDF o subirlo a storage externo y poner el link en `proyectos[].brandbook` en `ecosystem.ts`.
+- Brandbooks crudos (PDF, ~79MB y ~48MB) en `./branding/` → **gitignored** (no se suben).
+- **Extracción de páginas:** `scripts/pdf-extract.swift` (PDFKit nativo, no requiere poppler/imagemagick).
+  Uso: `swift scripts/pdf-extract.swift "<pdf>" "<outDir>" <scale> <page...>`. Para curar más assets de un nuevo proyecto: renderizar todas las páginas a baja res, elegir las fuertes, re-renderizar en alta (scale 2), optimizar con `sips` (`sips -Z 1800`, fotos a `-s format jpeg -s formatOptions 80`).
+- Assets curados en `public/branding/{costa-rica-unlocked,kipi-cash}/` (portada, logo, type, paleta vía hex en datos, mockups). Solo PNG/JPG curados se commitean; el PDF no.
+- Hex de paleta sampleados a mano desde las páginas de color del PDF (ver `proyectos[].palette` en `ecosystem.ts`).
 
 ## Formulario de contacto
 - Web3Forms. Key en Vercel env `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` = `2ebfb9fb-8d3e-4529-befd-5f940b7bb583`.
@@ -66,9 +70,9 @@ vercel --yes --prod --scope dignitatechs-projects   # deploy manual
 1. **Confirmar producción 200** en todas las rutas (ver arriba).
 2. Confirmar que el formulario entrega correo a leonidas.yauri@dignita.tech.
 3. Brandbooks descargables (comprimir/hostear PDFs) + link en `/proyectos`.
-4. Documentar **Mi Rest con IA** (hoy es placeholder "Por documentar").
+4. Documentar **Mi Rest con IA** (hoy `published:false`; cuando tenga brandbook, extraer assets y poblar el case study — mismo patrón que CRU/Kipi).
 5. Revisar e integrar **Genera** (genera.dignita.tech).
-6. Páginas de detalle ricas por servicio/producto/proyecto (hoy son catálogo con links afuera).
+6. ✅ **Proyectos** ya tienen case study rico (`/proyectos/[slug]`). Falta replicar el patrón a **servicios/productos** (hoy siguen siendo catálogo con links afuera).
 7. Fotos reales del equipo (hoy iniciales LY/AC) y LinkedIn en `ecosystem.ts → equipo`.
 
 ## Gotchas
