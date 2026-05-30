@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${BASE}/sitemap.xml`,
+    sitemap: [`${BASE}/sitemap.xml`, "https://genera.dignita.tech/sitemap.xml"],
     host: BASE,
   };
 }
