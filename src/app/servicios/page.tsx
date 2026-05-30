@@ -17,7 +17,15 @@ export default function ServiciosPage() {
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {servicios.map((item, i) => (
-          <CatalogCard key={item.title} item={item} i={i} />
+          <CatalogCard
+            key={item.title}
+            item={
+              item.slug
+                ? { ...item, href: `/servicios/${item.slug}`, external: false, cta: "Ver servicio" }
+                : item
+            }
+            i={i}
+          />
         ))}
       </div>
     </PageShell>
