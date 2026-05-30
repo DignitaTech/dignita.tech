@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import {
   User,
   Building2,
@@ -18,6 +19,9 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { InteractiveNeuralVortex } from "@/components/ui/interactive-neural-vortex-background";
+
+// hCaptcha sitekey público de Web3Forms (compartido, funciona con cualquier access_key)
+const HCAPTCHA_SITE_KEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
 
 const areas = [
   "Finanzas / Tesorería",
@@ -41,15 +45,24 @@ const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
 export function Diagnostico() {
   const [status, setStatus] = React.useState<Status>("idle");
+  const [captchaToken, setCaptchaToken] = React.useState<string | null>(null);
+  const captchaRef = React.useRef<HCaptcha>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (status === "sending") return;
+
+    if (!captchaToken) {
+      captchaRef.current?.execute();
+      return;
+    }
+
     const formEl = e.currentTarget;
     const data = new FormData(formEl);
     data.append("access_key", ACCESS_KEY ?? "");
     data.append("subject", "Nueva solicitud de diagnóstico — dignita.tech");
     data.append("from_name", "Dignita · Web");
+    data.append("h-captcha-response", captchaToken);
 
     if (!ACCESS_KEY) {
       setStatus("error");
@@ -63,7 +76,13 @@ export function Diagnostico() {
         body: data,
       });
       const json = await res.json();
-      setStatus(json.success ? "done" : "error");
+      if (json.success) {
+        setStatus("done");
+        captchaRef.current?.resetCaptcha();
+        setCaptchaToken(null);
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -222,6 +241,18 @@ export function Diagnostico() {
                 />
               </Field>
 
+              {/* hCaptcha — verificación anti-spam */}
+              <div className="flex justify-center">
+                <HCaptcha
+                  ref={captchaRef}
+                  sitekey={HCAPTCHA_SITE_KEY}
+                  onVerify={(token) => setCaptchaToken(token)}
+                  onExpire={() => setCaptchaToken(null)}
+                  theme="light"
+                  size="normal"
+                />
+              </div>
+
               {status === "error" ? (
                 <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-700">
                   No pudimos enviarlo automáticamente. Escríbenos a{" "}
@@ -237,7 +268,7 @@ export function Diagnostico() {
 
               <button
                 type="submit"
-                disabled={status === "sending"}
+                disabled={status === "sending" || !captchaToken}
                 className="group mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-from via-brand-via to-brand-to px-6 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:brightness-110 active:scale-[0.99] disabled:opacity-70"
               >
                 {status === "sending" ? (
