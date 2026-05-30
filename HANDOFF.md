@@ -1,6 +1,6 @@
 # Dignita — Handoff / Estado del proyecto
 
-_Última actualización: 2026-05-30 (sesión de construcción del hub)._
+_Última actualización: 2026-05-30 (sesión: Genera v2 + SEO/observabilidad + nav mega-menú + caso World)._
 
 ## Qué es
 `dignita.tech` — sitio Next.js 16 (App Router, React 19, Tailwind v4, TypeScript, pnpm).
@@ -11,7 +11,9 @@ Posicionamiento: **automatización-first + hub de ecosistema** (ref: halo-lab.co
 - **Producción:** https://www.dignita.tech (root `dignita.tech` hace 308→www).
 - **GitHub:** https://github.com/DignitaTech/dignita.tech (rama `main`, auto-deploy en cada push).
 - **Vercel:** team `dignitatechs-projects`, proyecto `dignita.tech`.
-- **Último commit:** `bafcd3b` (detalle de productos `/productos/[slug]` para los 3). Build verde, deploy READY.
+- **Último commit:** `505d3d8` (mapa cobertura + galería caso World). Build verde, deploy READY.
+- **Otros sitios del ecosistema:**
+  - **`genera.dignita.tech`** ✅ LIVE — proyecto Next.js separado en `~/genera-v2`, repo `github.com/DignitaTech/genera`, proyecto Vercel `genera-v2` (`prj_2ytLB5cj74vFtzAWQHqaFktcvmYH`, team `team_6ZwesA3MT4jMXEW24XVsG1R1`). Dominio verificado vía TXT. **Auto-deploy NO conectado al repo** (deploy manual: `cd ~/genera-v2 && vercel --yes --prod --scope dignitatechs-projects`). Pendiente: conectar Git en dashboard Vercel (Settings → Git).
 
 ### ⚠️ PRIMER PASO al retomar — verificar producción
 La verificación final quedó interrumpida. Confirmar que ya NO dan 404:
@@ -37,6 +39,27 @@ curl -s -o /dev/null -w "%{http_code}\n" https://www.dignita.tech/branding/kipi-
 - **Detalle de servicios `/servicios/[slug]`** (los 6): hero (icono + CTAs) → qué resolvemos → qué incluye (checklist) → proceso → CTA → otros servicios. Acento naranja de marca (no per-item). Automatización enruta a `/`, Branding a `/proyectos`, soporte ofrece su subdominio como CTA secundaria. Componente `src/components/site/service/service-hero.tsx`, reusa `CaseSection`. Datos en `ecosystem.ts → servicios` (`CatalogItem` extendido con `slug/summary/problem/deliverables/process/primaryCta/secondaryCta` + helper `getService`). Las cards de `/servicios` se mapean a `/servicios/<slug>`.
 - **Detalle de productos `/productos/[slug]`** (los 3): hero a 2 columnas (texto + screenshot en marco de navegador, o panel fallback "Vista previa próximamente") → qué resuelve → qué incluye → galería (si hay screenshots) → CTA → otros productos. **Acento por producto** (`accent`): Mirestconia naranja, Nivela verde, Orion índigo. Componentes `src/components/site/product/product-hero.tsx` + `src/components/site/cta-button.tsx` (compartido con service-hero). Datos en `ecosystem.ts → productos` (`CatalogItem` + `sector/accent/screenshots` + helper `getProduct`).
   - **Estado real de los SaaS (mayo 2026):** Mirestconia **live** (screenshot real en `public/productos/mirestconia/hero.jpg`, capturado con headless Chrome de mirestconia.com). Nivela **caído (500)** y Orion **parqueado en GoDaddy** → sus landings usan fallback visual + copy redactado; Orion CTA va a `/contacto` (no a la página parqueada). Cuando estén live: capturar screenshots reales y poblar `productos[].screenshots`.
+- **Caso de éxito `/casos/[slug]`** (Operadores de World): landing dedicada con acento violeta `#7C3AED`. Hero → 6 KPIs (1 año, 16+ puntos, +100K usuarios, +30M alcance, 90+ trabajadores, 7+ deptos) → reconocimientos → reto/enfoque/resultado → actividades clave → **mapa de cobertura** (`src/components/site/peru-map.tsx`, silueta SVG estilizada con 7 ciudades: Piura, Chiclayo, Trujillo, Chimbote, Nuevo Chimbote, Lima, Arequipa) → galería (`casos[].gallery`, **slot vacío — faltan fotos del Orbe**) → Instagram @crypnita.pe → CTA. Datos en `ecosystem.ts → casos` (`SuccessCase` extendido + helper `getCaso`). La card en `/proyectos` enlaza a `/casos/<slug>`.
+  - ⚠️ **Mapa estilizado**, no contorno real de Perú. Para precisión: reemplazar `PERU_PATH` en `peru-map.tsx` con un SVG/topojson real.
+  - ⚠️ **Faltan fotos del Orbe de World** (gente registrándose) → subir a `public/casos/operadores-de-world/` y poblar `casos[].gallery` en `ecosystem.ts`.
+
+## SEO + Observabilidad (sesión 2026-05-30)
+- **Vercel Analytics + Speed Insights** activos (`@vercel/analytics/next` + `@vercel/speed-insights/next` en `layout.tsx`). Métricas por ruta en dashboard Vercel.
+- **JSON-LD** estructurado: Organization + WebSite (sitewide en `layout.tsx`), Service (`/servicios/[slug]`), CreativeWork (`/proyectos/[slug]`). Componente `src/components/site/json-ld.tsx`.
+- **sitemap.xml + robots.txt** en `src/app/{sitemap,robots}.ts` (autoalimentados de `ecosystem.ts`). robots referencia también `genera.dignita.tech/sitemap.xml`. Genera tiene los suyos en `~/genera-v2/app/{sitemap,robots}.ts`.
+- **OG images dinámicas: INTENTADAS Y REVERTIDAS** — `ImageResponse`/`next/og` daba 500 en prod (edge: body vacío; node: prerender error). Los archivos `opengraph-image.tsx` fueron eliminados. Si se reintenta: investigar bien runtime + fuentes en Next 16.
+- **Pendiente usuario:** Google Search Console — agregar propiedad `dignita.tech`, verificar, enviar `https://dignita.tech/sitemap.xml`.
+
+## Nav (mega-menú)
+- `src/components/site/site-nav.tsx` reescrito: **Servicios** y **Productos** son dropdowns (mega-menú con icono+descripción+link por item, alimentados de `ecosystem.ts`). Proyectos/Equipo son links simples. Mobile: drawer con acordeón expandible por sección. Fondo blanco limpio (sin rejillas).
+
+## Formulario (actualizado)
+- **hCaptcha** agregado (`@hcaptcha/react-hcaptcha`, sitekey público de Web3Forms `50b2fe65-...`). El botón submit se desactiva hasta completar el captcha.
+- ✅ env `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` seteada en Vercel prod/dev (`2ebfb9fb-...`), verificada inlineada en el bundle de prod. **Pendiente:** usuario confirme recepción de un envío real (Web3Forms solo acepta POST desde navegador, no curl/server).
+
+## Keystatic CMS (instalado, pausado)
+- Instalado (`@keystatic/core` + `@keystatic/next`). Config en `src/keystatic.config.ts` (storage GitHub si `KEYSTATIC_GITHUB_CLIENT_ID` existe, sino local). Panel `/keystatic` ✅ live, API en `src/app/api/keystatic/[...params]/route.ts`, reader en `src/lib/reader.ts`. Contenido `proyectos` migrado a YAML en `content/proyectos/`. `KEYSTATIC_SECRET` seteado en Vercel.
+- **Pendiente para activar edición en prod:** visitar `/keystatic` en producción → botón "Create GitHub App" (one-click). El usuario decidió **pausarlo** (no urgente — Claude Code edita más rápido). Las páginas **aún leen de `ecosystem.ts`**, NO del reader (la migración del data-source quedó pendiente).
 
 ## Assets de branding
 - Brandbooks crudos (PDF, ~79MB y ~48MB) en `./branding/` → **gitignored** (no se suben).
@@ -70,15 +93,18 @@ vercel --yes --prod --scope dignitatechs-projects   # deploy manual
 - MX/SPF de Google y subdominios (3d, seguridad, ai, crm, soporte, etc.) intactos.
 
 ## Pendientes / Fase 2
-1. **Confirmar producción 200** en todas las rutas (ver arriba).
-2. 🔴 **Arreglar el formulario** (env key vacía en prod — ver sección "Formulario de contacto") y confirmar entrega a leonidas.yauri@dignita.tech.
-   - SEO: ✅ `sitemap.xml` + `robots.txt` ya generados (`src/app/{sitemap,robots}.ts`, autoalimentados de `ecosystem.ts`).
-   - CMS: pendiente elegir uno para editar el contenido de las páginas sin tocar código (hoy todo vive en `src/lib/ecosystem.ts`).
-3. Brandbooks descargables (comprimir/hostear PDFs) + link en `/proyectos`.
-4. Documentar **Mi Rest con IA** (hoy `published:false`; cuando tenga brandbook, extraer assets y poblar el case study — mismo patrón que CRU/Kipi).
-5. Revisar e integrar **Genera** (genera.dignita.tech).
-6. ✅ **Proyectos**, ✅ **Servicios** y ✅ **Productos** ya tienen detalle rico (`/{proyectos,servicios,productos}/[slug]`). **Pendiente #6 cerrado.** Falta solo: capturar screenshots reales de Nivela/Orion cuando vuelvan a estar live.
-7. Fotos reales del equipo (hoy iniciales LY/AC) y LinkedIn en `ecosystem.ts → equipo`.
+1. 🔴 **Confirmar entrega del formulario** — usuario envía uno real desde el navegador y verifica que llega a leonidas.yauri@dignita.tech (no se puede testear server-side).
+2. 🟡 **Fotos del Orbe de World** → `public/casos/operadores-de-world/` + poblar `casos[].gallery`.
+3. 🟡 **Mapa real de Perú** en `peru-map.tsx` (hoy silueta estilizada).
+4. 🟡 **Google Search Console** — agregar/verificar `dignita.tech`, enviar sitemap.
+5. Conectar **auto-deploy Git** del proyecto Vercel `genera-v2` (hoy deploy manual).
+6. Documentar **Mi Rest con IA** (`published:false`; falta brandbook).
+7. Screenshots reales de Nivela/Orion cuando vuelvan a estar live.
+8. Fotos reales del equipo + LinkedIn en `ecosystem.ts → equipo` (hoy iniciales LY/AC).
+9. Brandbooks descargables (comprimir/hostear PDFs).
+10. (Opcional) Reanudar **Keystatic**: migrar páginas a leer del reader + activar GitHub App.
+
+✅ Cerrado: detalle de proyectos/servicios/productos, caso World, Genera v2, SEO (sitemap/robots/JSON-LD), Analytics, nav mega-menú, captcha, key del form.
 
 ## Gotchas
 - `lucide-react` 1.17 **eliminó iconos de marca** (`Linkedin`, `Github`) → usar SVG inline.
