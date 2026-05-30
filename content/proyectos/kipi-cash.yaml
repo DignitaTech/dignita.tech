@@ -1,0 +1,50 @@
+title: Kipi.cash
+category: Branding
+sector: Fintech
+year: "2024"
+description: Identidad de marca para una fintech.
+accent: "#4157EE"
+published: true
+cover: /branding/kipi-cash/portada.jpg
+summary: La identidad de una fintech pensada para que mover dinero se sienta simple, cercano y confiable.
+challenge: Kipi.cash llegaba a un mercado saturado de apps financieras frías y genéricas. Necesitaba una identidad que transmitiera confianza sin sacrificar cercanía, y que funcionara igual en una pantalla de onboarding que en una gorra.
+approach: Construimos un sistema visual sobre un azul eléctrico, equilibrado con una paleta pastel que humaniza cada punto de contacto. El logotipo es directo y legible; Helvetica Neue mantiene todo limpio y operativo.
+result: Una marca flexible y reconocible, lista para escalar de la app a la calle — producto digital, merchandising y señalética comparten el mismo ADN.
+liveUrl: ""
+services:
+  - Estrategia de marca
+  - Naming
+  - Identidad visual
+  - Sistema de aplicación
+palette:
+  - name: Azul eléctrico
+    hex: "#4157EE"
+  - name: Rosa
+    hex: "#F28AC6"
+  - name: Amarillo
+    hex: "#FAD958"
+  - name: Celeste
+    hex: "#72DDFC"
+  - name: Tinta
+    hex: "#2E2D3B"
+typography:
+  - name: Helvetica Neue
+    role: "Titulares e interfaz"
+  - name: Helvetica Neue Light
+    role: Texto largo
+gallery:
+  - src: /branding/kipi-cash/app.jpg
+    alt: Pantallas de la app de Kipi.cash
+    wide: true
+  - src: /branding/kipi-cash/laptop.jpg
+    alt: Sitio de Kipi.cash en laptop
+    wide: true
+  - src: /branding/kipi-cash/signage.jpg
+    alt: Señalética de oficina de Kipi.cash
+    wide: true
+  - src: /branding/kipi-cash/cap.jpg
+    alt: Gorra con la marca Kipi.cash
+    wide: false
+  - src: /branding/kipi-cash/tee.jpg
+    alt: Camiseta con la marca Kipi.cash
+    wide: false

@@ -1,0 +1,48 @@
+title: Costa Rica Unlocked
+category: Branding
+sector: "Turismo & experiencias"
+year: "2024"
+description: Identidad de marca para una agencia de viajes y tours.
+accent: "#00629A"
+published: true
+cover: /branding/costa-rica-unlocked/portada.png
+summary: Identidad para una agencia que abre la Costa Rica auténtica — la que no sale en los folletos.
+challenge: Costa Rica compite con cientos de operadores que venden las mismas postales. La marca necesitaba sentirse local, vibrante y premium a la vez, capaz de vivir igual de bien en una camiseta, una van o el feed de un viajero.
+approach: Partimos de un logotipo manuscrito con personalidad y lo anclamos a una paleta tomada del país. La tipografía Proxima Nova ordena la información sin apagar la energía del lettering.
+result: Un sistema cálido y memorable que viaja bien — del merchandising a la flota, del empaque a la señalética, todo se reconoce como Costa Rica Unlocked.
+liveUrl: ""
+services:
+  - Estrategia de marca
+  - "Logotipo & lettering"
+  - Identidad visual
+  - Aplicaciones de marca
+palette:
+  - name: Azul océano
+    hex: "#00629A"
+  - name: Rojo
+    hex: "#ED5157"
+  - name: Verde selva
+    hex: "#387B61"
+  - name: Dorado
+    hex: "#FFD878"
+  - name: Crema
+    hex: "#FFFAF1"
+typography:
+  - name: Proxima Nova
+    role: Titulares y texto
+gallery:
+  - src: /branding/costa-rica-unlocked/nature.jpg
+    alt: "Dirección de fotografía de marca: naturaleza de Costa Rica"
+    wide: true
+  - src: /branding/costa-rica-unlocked/sand.jpg
+    alt: Logotipo aplicado sobre la arena de la playa
+    wide: true
+  - src: /branding/costa-rica-unlocked/van.jpg
+    alt: Rotulación de la van de Costa Rica Unlocked
+    wide: true
+  - src: /branding/costa-rica-unlocked/hat.jpg
+    alt: Bucket hat con la marca
+    wide: false
+  - src: /branding/costa-rica-unlocked/tote.jpg
+    alt: Tote bag con el logotipo
+    wide: false
