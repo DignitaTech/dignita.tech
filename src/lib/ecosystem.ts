@@ -486,6 +486,7 @@ export const casos: SuccessCase[] = [
     year: "2023–2024",
     metric: "+16 locales",
     accent: "#7C3AED",
+    cover: "/casos/operadores-de-world/orbe.jpg",
     description: "Operación digitalizada y soportada en más de 16 locales a nivel nacional.",
     summary:
       "Dignita fue el equipo detrás del crecimiento de uno de los operadores de World más activos del Perú — 16 puntos aperturados, más de 100 mil usuarios registrados y el reconocimiento como el operador con más registros a nivel nacional, en repetidas ocasiones.",
@@ -521,11 +522,6 @@ export const casos: SuccessCase[] = [
     socialUrl: "https://www.instagram.com/crypnita.pe/",
     socialLabel: "@crypnita.pe",
     gallery: [
-      {
-        src: "/casos/operadores-de-world/orbe.jpg",
-        alt: "Orbe de World verificando identidad — World ID 'Humano Único'",
-        wide: true,
-      },
       {
         src: "/casos/operadores-de-world/punto.jpg",
         alt: "Punto de registro Worldcoin operado por Dignita",

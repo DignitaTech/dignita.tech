@@ -54,32 +54,57 @@ export default async function CasoPage({
               <ArrowLeft className="size-4" /> Proyectos
             </Link>
           </Reveal>
-          <Reveal delayIndex={1}>
-            <div
-              className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest"
-              style={{ color: accent }}
-            >
-              <span>{caso.sector}</span>
-              {caso.year && (
-                <>
-                  <span className="text-foreground/20">·</span>
-                  <span>{caso.year}</span>
-                </>
+
+          <div className="mt-6 grid items-center gap-10 lg:grid-cols-2">
+            {/* Texto */}
+            <div>
+              <Reveal delayIndex={1}>
+                <div
+                  className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest"
+                  style={{ color: accent }}
+                >
+                  <span>{caso.sector}</span>
+                  {caso.year && (
+                    <>
+                      <span className="text-foreground/20">·</span>
+                      <span>{caso.year}</span>
+                    </>
+                  )}
+                </div>
+              </Reveal>
+              <Reveal delayIndex={2}>
+                <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+                  {caso.client}
+                </h1>
+              </Reveal>
+              {caso.summary && (
+                <Reveal delayIndex={3}>
+                  <p className="mt-5 text-pretty text-lg leading-relaxed text-muted-foreground">
+                    {caso.summary}
+                  </p>
+                </Reveal>
               )}
             </div>
-          </Reveal>
-          <Reveal delayIndex={2}>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">
-              {caso.client}
-            </h1>
-          </Reveal>
-          {caso.summary && (
-            <Reveal delayIndex={3}>
-              <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
-                {caso.summary}
-              </p>
-            </Reveal>
-          )}
+
+            {/* Foto del Orbe */}
+            {caso.cover && (
+              <Reveal delayIndex={2}>
+                <div
+                  className="relative aspect-[16/10] overflow-hidden rounded-3xl ring-1 ring-foreground/10"
+                  style={{ boxShadow: `0 40px 120px -45px ${accent}55` }}
+                >
+                  <Image
+                    src={caso.cover}
+                    alt={`${caso.client} — Orbe de World`}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 512px"
+                    className="object-cover"
+                  />
+                </div>
+              </Reveal>
+            )}
+          </div>
         </div>
       </header>
 
