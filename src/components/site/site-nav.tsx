@@ -57,18 +57,18 @@ function MegaMenu({
           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
           className="absolute left-1/2 top-full z-50 mt-3 w-[min(96vw,560px)] -translate-x-1/2"
         >
-          <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-white/95 shadow-xl shadow-black/8 backdrop-blur-md">
-            <div className="grid grid-cols-2 gap-px bg-foreground/5 p-1">
+          <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-white shadow-xl shadow-black/8 backdrop-blur-md">
+            <div className="grid grid-cols-2 gap-0 p-2">
               {menu.items.map((item) => {
                 const Icon = item.icon;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group flex items-start gap-3 rounded-xl bg-white p-3.5 transition hover:bg-orange-50/60"
+                    className="group flex items-start gap-3 rounded-xl p-3.5 transition hover:bg-foreground/[0.04]"
                   >
-                    <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-from/20 to-brand-to/10 text-primary ring-1 ring-foreground/8 transition group-hover:from-brand-from/30">
-                      <Icon className="size-4.5" />
+                    <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-from/15 to-brand-to/8 text-primary transition group-hover:from-brand-from/25">
+                      <Icon className="size-4" />
                     </div>
                     <div className="min-w-0">
                       <div className="truncate text-[13px] font-semibold text-foreground">
@@ -82,7 +82,7 @@ function MegaMenu({
                 );
               })}
             </div>
-            <div className="border-t border-foreground/8 bg-foreground/[0.02] px-4 py-2.5">
+            <div className="border-t border-foreground/8 px-4 py-2.5">
               <Link
                 href={menu.cta.href}
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary transition hover:gap-2"
