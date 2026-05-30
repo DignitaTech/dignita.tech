@@ -23,14 +23,34 @@ export default function ProyectosPage() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {casos.map((c, i) => (
           <Reveal key={c.client} delayIndex={i}>
-            <div className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-gradient-to-br from-brand-from/10 via-card/60 to-brand-to/10 p-6">
-              <div className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-from/25 to-brand-to/20 text-primary ring-1 ring-foreground/10">
-                <TrendingUp className="size-6" />
+            <Link href={`/casos/${c.slug}`} className="block h-full">
+              <div
+                className="group relative h-full overflow-hidden rounded-3xl border border-foreground/10 bg-card/60 p-6 transition hover:border-foreground/20 hover:bg-white/85"
+                style={{ boxShadow: c.accent ? `0 0 40px -25px ${c.accent}44` : undefined }}
+              >
+                <div
+                  className="flex size-12 items-center justify-center rounded-2xl ring-1 ring-foreground/10"
+                  style={c.accent ? { background: `${c.accent}20`, color: c.accent } : undefined}
+                >
+                  <TrendingUp className="size-6" />
+                </div>
+                <div
+                  className="mt-5 text-3xl font-semibold"
+                  style={c.accent ? { color: c.accent } : undefined}
+                >
+                  {c.metric}
+                </div>
+                <div className="mt-1 text-base font-medium">{c.client}</div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
+                <span
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium"
+                  style={c.accent ? { color: c.accent } : { color: "var(--primary)" }}
+                >
+                  Ver caso
+                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
               </div>
-              <div className="mt-5 text-3xl font-semibold text-gradient">{c.metric}</div>
-              <div className="mt-1 text-base font-medium">{c.client}</div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
-            </div>
+            </Link>
           </Reveal>
         ))}
       </div>

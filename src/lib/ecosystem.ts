@@ -446,19 +446,83 @@ export const publishedProjects = proyectos.filter((p) => p.published);
 export const getProject = (slug: string) =>
   proyectos.find((p) => p.slug === slug && p.published);
 
+export interface KPI {
+  value: string;
+  label: string;
+  sub?: string;
+}
+
+export interface Activity {
+  title: string;
+  description: string;
+}
+
 export interface SuccessCase {
+  slug: string;
   client: string;
+  sector: string;
   metric: string;
   description: string;
+  accent?: string;
+  cover?: string;
+  year?: string;
+  summary?: string;
+  challenge?: string;
+  approach?: string;
+  result?: string;
+  kpis?: KPI[];
+  activities?: Activity[];
+  socialUrl?: string;
+  socialLabel?: string;
+  highlights?: string[];
 }
 
 export const casos: SuccessCase[] = [
   {
+    slug: "operadores-de-world",
     client: "Operadores de World",
+    sector: "Telecomunicaciones · Perú",
+    year: "2023–2024",
     metric: "+16 locales",
-    description: "Operación digitalizada y soportada en más de 16 locales.",
+    accent: "#7C3AED",
+    description: "Operación digitalizada y soportada en más de 16 locales a nivel nacional.",
+    summary:
+      "Dignita fue el equipo detrás del crecimiento de uno de los operadores de World más activos del Perú — 16 puntos aperturados, más de 100 mil usuarios registrados y el reconocimiento como el operador con más registros a nivel nacional, en repetidas ocasiones.",
+    challenge:
+      "World necesitaba un operador que no solo vendiera, sino que construyera comunidad, presencia digital y volumen de registros sostenido. El reto era operar en múltiples frentes simultáneamente: apertura de puntos, activaciones en campo, contenido digital y gestión de resultados.",
+    approach:
+      "Ejecutamos una operación 360 con más de 90 trabajadores gestionados directamente: apertura de 16 puntos de venta en 7+ departamentos (Arequipa, Trujillo, Chiclayo, Piura, Chimbote, Nuevo Chimbote y más), activaciones BTL en campo, producción de contenido bajo la marca Crypnita, y campañas de publicidad digital que alcanzaron a más de 30 millones de personas en Perú.",
+    result:
+      "En un año nos posicionamos como el operador de World con más registros a nivel nacional — en decenas de ocasiones. 100 mil usuarios registrados, 16 locales operativos en 7 departamentos, 90+ trabajadores y más de 30 millones de usuarios impactados con publicidad.",
+    kpis: [
+      { value: "1 año", label: "Como operador oficial", sub: "2023–2024" },
+      { value: "16+", label: "Puntos aperturados", sub: "a nivel nacional" },
+      { value: "+100K", label: "Usuarios registrados", sub: "en Perú" },
+      { value: "+30M", label: "Usuarios alcanzados", sub: "con publicidad digital" },
+      { value: "90+", label: "Trabajadores gestionados", sub: "equipo propio" },
+      { value: "7+", label: "Departamentos", sub: "Arequipa, Trujillo, Chiclayo, Piura, Chimbote y más" },
+    ],
+    activities: [
+      { title: "Activaciones en campo", description: "Operativos BTL en puntos estratégicos para captar usuarios presencialmente." },
+      { title: "Producción de video", description: "Contenido audiovisual de marca para redes sociales y campañas digitales." },
+      { title: "Gestión de posts", description: "Estrategia y publicación de contenido orgánico en redes sociales." },
+      { title: "Publicidad digital", description: "Campañas pagadas que alcanzaron más de 30 millones de usuarios en Perú." },
+      { title: "BTL y eventos", description: "Activaciones below-the-line en zonas de alto tráfico y eventos masivos." },
+      { title: "Gestión de puntos", description: "Apertura, operación y soporte de 16 locales simultáneamente." },
+    ],
+    highlights: [
+      "Operador de World con más registros a nivel nacional — en decenas de ocasiones",
+      "Único operador con presencia simultánea en 7+ departamentos del Perú",
+      "Más de 90 trabajadores gestionados directamente",
+      "Más de 30 millones de personas alcanzadas con publicidad digital",
+      "Alianzas en Arequipa, Trujillo, Chiclayo, Piura, Chimbote, Nuevo Chimbote y más",
+    ],
+    socialUrl: "https://www.instagram.com/crypnita.pe/",
+    socialLabel: "@crypnita.pe",
   },
 ];
+
+export const getCaso = (slug: string) => casos.find((c) => c.slug === slug);
 
 export interface TeamMember {
   name: string;
