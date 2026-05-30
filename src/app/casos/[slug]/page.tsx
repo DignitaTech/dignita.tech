@@ -229,9 +229,11 @@ export default async function CasoPage({
                     {[
                       "Piura",
                       "Chiclayo",
+                      "Ferreñafe",
                       "Trujillo",
                       "Chimbote",
                       "Nuevo Chimbote",
+                      "Huaraz",
                       "Lima",
                       "Arequipa",
                     ].map((city) => (

@@ -516,7 +516,7 @@ export const casos: SuccessCase[] = [
       "Único operador con presencia simultánea en 7+ departamentos del Perú",
       "Más de 90 trabajadores gestionados directamente",
       "Más de 30 millones de personas alcanzadas con publicidad digital",
-      "Alianzas en Arequipa, Trujillo, Chiclayo, Piura, Chimbote, Nuevo Chimbote y más",
+      "Alianzas en Piura, Chiclayo, Ferreñafe, Trujillo, Chimbote, Nuevo Chimbote, Huaraz, Lima y Arequipa",
     ],
     socialUrl: "https://www.instagram.com/crypnita.pe/",
     socialLabel: "@crypnita.pe",
