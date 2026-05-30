@@ -33,7 +33,7 @@ export interface CatalogItem {
   status?: "Activo" | "Próximamente" | "En revisión" | "Listo";
   icon: LucideIcon;
   cta?: string;
-  /** campos de la landing de detalle (servicios) */
+  /** campos de la landing de detalle (servicios y productos) */
   slug?: string;
   summary?: string;
   problem?: string;
@@ -41,6 +41,10 @@ export interface CatalogItem {
   process?: ProcessStep[];
   primaryCta?: ServiceCta;
   secondaryCta?: ServiceCta;
+  /** solo productos */
+  sector?: string;
+  accent?: string;
+  screenshots?: CaseStudyImage[];
 }
 
 export const servicios: CatalogItem[] = [
@@ -200,27 +204,87 @@ export const getService = (slug: string) =>
 
 export const productos: CatalogItem[] = [
   {
+    slug: "mirestconia",
     title: "Mirestconia",
     description: "Plataforma SaaS para gestión de restaurantes con IA.",
     href: "https://mirestconia.com",
     external: true,
     icon: LayoutGrid,
+    status: "Activo",
+    sector: "Restaurantes · SaaS",
+    accent: "#F25C1F",
+    summary:
+      "Gestiona tu restaurante con tecnología: mesas, cocina, facturación y más, desde una interfaz moderna, rápida y fácil de usar.",
+    problem:
+      "Operar un restaurante con cuadernos, WhatsApp y hojas sueltas hace que se pierdan pedidos, se descuadre la caja y nadie sepa qué se vende de verdad.",
+    deliverables: [
+      "Gestión de mesas y salón en tiempo real",
+      "Comandas a cocina sin papel",
+      "Facturación y control de caja",
+      "Reportes de ventas y productos",
+      "Pensado para restaurantes del Perú",
+    ],
+    primaryCta: { label: "Ir a Mirestconia", href: "https://mirestconia.com", external: true },
+    secondaryCta: { label: "Quiero algo así", href: "/contacto" },
+    screenshots: [
+      {
+        src: "/productos/mirestconia/hero.jpg",
+        alt: "Panel de Mirestconia: mesas activas, cocina, ventas del día y clientes",
+        wide: true,
+      },
+    ],
   },
   {
+    slug: "nivela-tu-academy",
     title: "Nivela tu Academy",
     description: "Plataforma SaaS para academias y formación online.",
     href: "https://nivelatuacademy.com",
     external: true,
     icon: GraduationCap,
+    status: "Activo",
+    sector: "Educación · SaaS",
+    accent: "#0E9F6E",
+    summary:
+      "La plataforma para que academias y formadores vendan, gestionen y dicten sus cursos online en un solo lugar.",
+    problem:
+      "Las academias pierden tiempo y alumnos cuando los cursos, los pagos y el seguimiento viven en herramientas separadas que no se hablan entre sí.",
+    deliverables: [
+      "Catálogo y venta de cursos online",
+      "Gestión de alumnos y matrículas",
+      "Pagos y suscripciones",
+      "Contenido, clases y evaluaciones",
+      "Reportes de avance y retención",
+    ],
+    primaryCta: { label: "Conocer Nivela", href: "https://nivelatuacademy.com", external: true },
+    secondaryCta: { label: "Quiero una plataforma así", href: "/contacto" },
   },
   {
+    slug: "orion-erp",
     title: "Orion ERP",
     description: "ERP modular para operaciones administrativas y financieras.",
     href: "https://orion-rp.com",
     external: true,
     icon: Database,
+    status: "Próximamente",
+    sector: "ERP · SaaS",
+    accent: "#4F46E5",
+    summary:
+      "Un ERP modular que ordena la operación administrativa y financiera de tu empresa en un solo sistema.",
+    problem:
+      "Cuando inventario, compras, ventas y contabilidad viven en archivos distintos, la información nunca cuadra y las decisiones llegan tarde.",
+    deliverables: [
+      "Módulos de compras, ventas e inventario",
+      "Administración y finanzas",
+      "Reportería y tableros de control",
+      "Multi-empresa y multi-usuario",
+      "Modular: activas solo lo que necesitas",
+    ],
+    primaryCta: { label: "Quiero Orion", href: "/contacto" },
   },
 ];
+
+export const getProduct = (slug: string) =>
+  productos.find((p) => p.slug === slug);
 
 export const retail: CatalogItem[] = [
   {
