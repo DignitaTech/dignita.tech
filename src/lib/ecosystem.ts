@@ -130,39 +130,134 @@ export const herramientas: CatalogItem[] = [
   },
 ];
 
+export interface CaseStudyImage {
+  src: string;
+  alt: string;
+  /** ocupa todo el ancho de la galería */
+  wide?: boolean;
+}
+
+export interface PaletteColor {
+  name: string;
+  hex: string;
+}
+
+export interface Typeface {
+  name: string;
+  role: string;
+}
+
 export interface Project {
+  slug: string;
   title: string;
   category: string;
+  sector: string;
   description: string;
-  status?: string;
-  href?: string;
-  image?: string;
-  logo?: string;
-  brandbook?: string;
+  /** color de la marca presentada, en hex */
+  accent: string;
+  published: boolean;
+  cover?: string;
+  year?: string;
+  summary?: string;
+  challenge?: string;
+  approach?: string;
+  result?: string;
+  services?: string[];
+  gallery?: CaseStudyImage[];
+  palette?: PaletteColor[];
+  typography?: Typeface[];
+  liveUrl?: string;
 }
 
 export const proyectos: Project[] = [
   {
+    slug: "costa-rica-unlocked",
     title: "Costa Rica Unlocked",
     category: "Branding",
-    description: "Identidad de marca para agencia de viajes y tours.",
-    status: "Listo",
-    image: "/branding/costa-rica-unlocked/portada.png",
+    sector: "Turismo & experiencias",
+    year: "2024",
+    description: "Identidad de marca para una agencia de viajes y tours.",
+    accent: "#00629A",
+    published: true,
+    cover: "/branding/costa-rica-unlocked/portada.png",
+    summary:
+      "Identidad para una agencia que abre la Costa Rica auténtica — la que no sale en los folletos.",
+    challenge:
+      "Costa Rica compite con cientos de operadores que venden las mismas postales. La marca necesitaba sentirse local, vibrante y premium a la vez, capaz de vivir igual de bien en una camiseta, una van o el feed de un viajero.",
+    approach:
+      "Partimos de un logotipo manuscrito con personalidad y lo anclamos a una paleta tomada del país: azul océano, verde selva, rojo y dorado. La tipografía Proxima Nova ordena la información sin apagar la energía del lettering.",
+    result:
+      "Un sistema cálido y memorable que viaja bien: del merchandising a la flota, del empaque a la señalética, todo se reconoce como Costa Rica Unlocked.",
+    services: ["Estrategia de marca", "Logotipo & lettering", "Identidad visual", "Aplicaciones de marca"],
+    palette: [
+      { name: "Azul océano", hex: "#00629A" },
+      { name: "Rojo", hex: "#ED5157" },
+      { name: "Verde selva", hex: "#387B61" },
+      { name: "Dorado", hex: "#FFD878" },
+      { name: "Crema", hex: "#FFFAF1" },
+    ],
+    typography: [{ name: "Proxima Nova", role: "Titulares y texto" }],
+    gallery: [
+      { src: "/branding/costa-rica-unlocked/nature.jpg", alt: "Dirección de fotografía de marca: naturaleza de Costa Rica", wide: true },
+      { src: "/branding/costa-rica-unlocked/sand.jpg", alt: "Logotipo aplicado sobre la arena de la playa", wide: true },
+      { src: "/branding/costa-rica-unlocked/van.jpg", alt: "Rotulación de la van de Costa Rica Unlocked", wide: true },
+      { src: "/branding/costa-rica-unlocked/hat.jpg", alt: "Bucket hat con la marca" },
+      { src: "/branding/costa-rica-unlocked/tote.jpg", alt: "Tote bag con el logotipo" },
+    ],
   },
   {
+    slug: "kipi-cash",
     title: "Kipi.cash",
     category: "Branding",
-    description: "Identidad de marca para fintech.",
-    status: "Listo",
-    image: "/branding/kipi-cash/portada.png",
+    sector: "Fintech",
+    year: "2024",
+    description: "Identidad de marca para una fintech.",
+    accent: "#4157EE",
+    published: true,
+    cover: "/branding/kipi-cash/portada.jpg",
+    summary:
+      "La identidad de una fintech pensada para que mover dinero se sienta simple, cercano y confiable.",
+    challenge:
+      "Kipi.cash llegaba a un mercado saturado de apps financieras frías y genéricas. Necesitaba una identidad que transmitiera confianza sin sacrificar cercanía, y que funcionara igual en una pantalla de onboarding que en una gorra.",
+    approach:
+      "Construimos un sistema visual sobre un azul eléctrico, equilibrado con una paleta pastel —rosa, amarillo y celeste— que humaniza cada punto de contacto. El logotipo es directo y legible; Helvetica Neue mantiene todo limpio y operativo.",
+    result:
+      "Una marca flexible y reconocible, lista para escalar de la app a la calle: producto digital, merchandising y señalética comparten el mismo ADN.",
+    services: ["Estrategia de marca", "Naming", "Identidad visual", "Sistema de aplicación"],
+    palette: [
+      { name: "Azul eléctrico", hex: "#4157EE" },
+      { name: "Rosa", hex: "#F28AC6" },
+      { name: "Amarillo", hex: "#FAD958" },
+      { name: "Celeste", hex: "#72DDFC" },
+      { name: "Tinta", hex: "#2E2D3B" },
+    ],
+    typography: [
+      { name: "Helvetica Neue", role: "Titulares e interfaz" },
+      { name: "Helvetica Neue Light", role: "Texto largo" },
+    ],
+    gallery: [
+      { src: "/branding/kipi-cash/app.jpg", alt: "Pantallas de la app de Kipi.cash", wide: true },
+      { src: "/branding/kipi-cash/laptop.jpg", alt: "Sitio de Kipi.cash en laptop", wide: true },
+      { src: "/branding/kipi-cash/signage.jpg", alt: "Señalética de oficina de Kipi.cash", wide: true },
+      { src: "/branding/kipi-cash/cap.jpg", alt: "Gorra con la marca Kipi.cash" },
+      { src: "/branding/kipi-cash/tee.jpg", alt: "Camiseta con la marca Kipi.cash" },
+    ],
   },
   {
+    slug: "mi-rest-con-ia",
     title: "Mi Rest con IA",
     category: "Branding",
-    description: "Identidad de marca para producto de restaurantes con IA.",
-    status: "Por documentar",
+    sector: "Restaurantes & IA",
+    description: "Identidad de marca para un producto de gestión de restaurantes con IA.",
+    accent: "#FF7A1A",
+    published: false,
   },
 ];
+
+export const publishedProjects = proyectos.filter((p) => p.published);
+
+export const getProject = (slug: string) =>
+  proyectos.find((p) => p.slug === slug && p.published);
 
 export interface SuccessCase {
   client: string;
