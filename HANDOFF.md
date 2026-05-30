@@ -11,7 +11,7 @@ Posicionamiento: **automatización-first + hub de ecosistema** (ref: halo-lab.co
 - **Producción:** https://www.dignita.tech (root `dignita.tech` hace 308→www).
 - **GitHub:** https://github.com/DignitaTech/dignita.tech (rama `main`, auto-deploy en cada push).
 - **Vercel:** team `dignitatechs-projects`, proyecto `dignita.tech`.
-- **Último commit:** `04b261f` (case studies de proyecto + landings ricas desde brandbook). Build verde, deploy READY.
+- **Último commit:** `08bdf21` (detalle de servicios `/servicios/[slug]` para los 6). Build verde, deploy READY.
 
 ### ⚠️ PRIMER PASO al retomar — verificar producción
 La verificación final quedó interrumpida. Confirmar que ya NO dan 404:
@@ -34,6 +34,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://www.dignita.tech/branding/kipi-
 - `/proyectos`: casos de éxito (Operadores de World +16) + branding con **portadas reales**. Las cards publicadas enlazan a su case study.
 - **Case studies `/proyectos/[slug]`** (Costa Rica Unlocked, Kipi.cash): landing rica estilo Halo Lab, vestida con el acento de cada marca, con imágenes extraídas del brandbook (logo, paleta, tipografía, mockups). Ruta dinámica con `generateStaticParams`; Mi Rest queda `published:false` (card "Próximamente", sin ruta).
 - Componentes en `src/components/site/case-study/{case-hero,case-meta,case-section,case-gallery,palette-row,type-specimen}.tsx`. Datos en `ecosystem.ts → proyectos` (tipo `Project` extendido + helpers `publishedProjects`/`getProject`).
+- **Detalle de servicios `/servicios/[slug]`** (los 6): hero (icono + CTAs) → qué resolvemos → qué incluye (checklist) → proceso → CTA → otros servicios. Acento naranja de marca (no per-item). Automatización enruta a `/`, Branding a `/proyectos`, soporte ofrece su subdominio como CTA secundaria. Componente `src/components/site/service/service-hero.tsx`, reusa `CaseSection`. Datos en `ecosystem.ts → servicios` (`CatalogItem` extendido con `slug/summary/problem/deliverables/process/primaryCta/secondaryCta` + helper `getService`). Las cards de `/servicios` se mapean a `/servicios/<slug>`.
 
 ## Assets de branding
 - Brandbooks crudos (PDF, ~79MB y ~48MB) en `./branding/` → **gitignored** (no se suben).
@@ -72,7 +73,7 @@ vercel --yes --prod --scope dignitatechs-projects   # deploy manual
 3. Brandbooks descargables (comprimir/hostear PDFs) + link en `/proyectos`.
 4. Documentar **Mi Rest con IA** (hoy `published:false`; cuando tenga brandbook, extraer assets y poblar el case study — mismo patrón que CRU/Kipi).
 5. Revisar e integrar **Genera** (genera.dignita.tech).
-6. ✅ **Proyectos** ya tienen case study rico (`/proyectos/[slug]`). Falta replicar el patrón a **servicios/productos** (hoy siguen siendo catálogo con links afuera).
+6. ✅ **Proyectos** (`/proyectos/[slug]`) y ✅ **Servicios** (`/servicios/[slug]`) ya tienen detalle rico. Falta replicar a **productos** (SaaS) — requiere screenshots de cada producto (capturables con headless Chrome desde sus sitios) o assets propios.
 7. Fotos reales del equipo (hoy iniciales LY/AC) y LinkedIn en `ecosystem.ts → equipo`.
 
 ## Gotchas
