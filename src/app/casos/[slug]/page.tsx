@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Trophy, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Trophy, CheckCircle2, MapPin, Camera } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { casos, getCaso } from "@/lib/ecosystem";
+import { PeruMap } from "@/components/site/peru-map";
 
 export function generateStaticParams() {
   return casos.map((c) => ({ slug: c.slug }));
@@ -197,6 +199,94 @@ export default async function CasoPage({
               </div>
             </section>
           )}
+
+          {/* ── Mapa de cobertura ── */}
+          <section className="mt-16 sm:mt-20">
+            <Reveal>
+              <span
+                className="text-xs font-semibold uppercase tracking-widest"
+                style={{ color: accent }}
+              >
+                Alcance nacional
+              </span>
+            </Reveal>
+            <Reveal delayIndex={1}>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+                Presencia en 7+ departamentos
+              </h2>
+            </Reveal>
+            <div className="mt-8 grid items-center gap-8 rounded-3xl border border-foreground/10 bg-card/60 p-6 sm:p-8 lg:grid-cols-2">
+              <Reveal>
+                <PeruMap accent={accent} />
+              </Reveal>
+              <Reveal delayIndex={1}>
+                <div>
+                  <p className="text-pretty leading-relaxed text-muted-foreground">
+                    Operamos simultáneamente en los principales mercados del país,
+                    con puntos de venta, activaciones y equipo propio en cada plaza.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {[
+                      "Piura",
+                      "Chiclayo",
+                      "Trujillo",
+                      "Chimbote",
+                      "Nuevo Chimbote",
+                      "Lima",
+                      "Arequipa",
+                    ].map((city) => (
+                      <span
+                        key={city}
+                        className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm"
+                        style={{ borderColor: `${accent}33`, color: accent }}
+                      >
+                        <MapPin className="size-3.5" />
+                        {city}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* ── Galería de fotos ── */}
+          {caso.gallery?.length ? (
+            <section className="mt-16 sm:mt-20">
+              <Reveal>
+                <span
+                  className="text-xs font-semibold uppercase tracking-widest"
+                  style={{ color: accent }}
+                >
+                  En el campo
+                </span>
+              </Reveal>
+              <Reveal delayIndex={1}>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+                  El Orbe en acción
+                </h2>
+              </Reveal>
+              <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {caso.gallery.map((img, i) => (
+                  <Reveal key={img.src} delayIndex={i % 3}>
+                    <div
+                      className={`relative overflow-hidden rounded-2xl ring-1 ring-foreground/10 ${
+                        img.wide ? "col-span-2 aspect-[16/10]" : "aspect-[3/4]"
+                      }`}
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        sizes="(max-width: 640px) 50vw, 33vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           {/* ── Instagram ── */}
           {caso.socialUrl && (

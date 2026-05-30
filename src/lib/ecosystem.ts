@@ -475,6 +475,7 @@ export interface SuccessCase {
   socialUrl?: string;
   socialLabel?: string;
   highlights?: string[];
+  gallery?: CaseStudyImage[];
 }
 
 export const casos: SuccessCase[] = [
