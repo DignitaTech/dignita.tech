@@ -308,11 +308,12 @@ export const retail: CatalogItem[] = [
 export const herramientas: CatalogItem[] = [
   {
     title: "Genera",
-    description: "Herramienta de generación asistida por IA.",
+    description: "Calculadora de ROI para IA y automatización. Genera tu propuesta comercial con proyección mes 1 al año 5.",
     href: "https://genera.dignita.tech",
     external: true,
-    status: "En revisión",
+    status: "Activo",
     icon: Sparkles,
+    cta: "Calcular ROI",
   },
 ];
 
