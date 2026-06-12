@@ -9,7 +9,6 @@ import {
   Clock,
   type LucideIcon,
 } from "lucide-react";
-import type { Testimonial } from "@/components/ui/testimonials-columns";
 
 export interface Service {
   id: string;
@@ -327,67 +326,21 @@ export const stats = [
   { value: "100%", label: "trazabilidad por caso y ejecución", icon: Activity },
 ];
 
-export const testimonials: Testimonial[] = [
-  {
-    text: "El diagnóstico nos mostró exactamente dónde estábamos perdiendo horas. La primera automatización se pagó sola en semanas.",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-    name: "Carolina Méndez",
-    role: "Gerente de Operaciones",
-  },
-  {
-    text: "Pasamos de revisar facturas a mano a un flujo documental con validación y trazabilidad. El equipo recuperó capacidad real.",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-    name: "Diego Salazar",
-    role: "Jefe de Cuentas por Pagar",
-  },
-  {
-    text: "Lo que más valoro es el criterio: nos dijeron qué NO automatizar todavía. Eso nos ahorró una inversión mal puesta.",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
-    name: "Valentina Ríos",
-    role: "Directora de Finanzas",
-  },
-  {
-    text: "Los agentes operativos asumieron el triage de solicitudes con guardrails claros. Nada se sale de control.",
-    image: "https://randomuser.me/api/portraits/men/52.jpg",
-    name: "Andrés Beltrán",
-    role: "Líder de Back Office",
-  },
-  {
-    text: "La capa de observabilidad cambió la conversación: ahora vemos errores antes de que escalen.",
-    image: "https://randomuser.me/api/portraits/women/12.jpg",
-    name: "Lucía Fernández",
-    role: "Gerente de Servicios Compartidos",
-  },
-  {
-    text: "El soporte evolutivo es continuidad real, no una bolsa de horas. Las soluciones siguen funcionando y mejorando.",
-    image: "https://randomuser.me/api/portraits/men/76.jpg",
-    name: "Martín Quispe",
-    role: "Subgerente de Administración",
-  },
-  {
-    text: "Hablan en lenguaje de negocio. Por fin una firma que mide tiempo y capacidad, no solo tecnología.",
-    image: "https://randomuser.me/api/portraits/women/24.jpg",
-    name: "Paula Restrepo",
-    role: "COO",
-  },
-  {
-    text: "La arquitectura y los estándares nos permitieron escalar de un proceso a una ola completa sin caos.",
-    image: "https://randomuser.me/api/portraits/men/19.jpg",
-    name: "Renato Cárdenas",
-    role: "Gerente de Tecnología",
-  },
-  {
-    text: "Entraron por un dolor puntual y terminaron ordenando toda nuestra operación administrativa.",
-    image: "https://randomuser.me/api/portraits/women/90.jpg",
-    name: "Isabel Navarro",
-    role: "Gerente Administrativa",
-  },
-];
-
 export interface BrandLogo {
   src: string;
   alt: string;
 }
+
+export const clientLogos: BrandLogo[] = [
+  { src: "/clientes/bbva.png", alt: "BBVA" },
+  { src: "/clientes/bcp.png", alt: "BCP" },
+  { src: "/clientes/verisure.png", alt: "Verisure" },
+  { src: "/clientes/niubiz.png", alt: "Niubiz" },
+  { src: "/clientes/tambo.png", alt: "Tambo" },
+  { src: "/clientes/hayduk.png", alt: "Hayduk" },
+  { src: "/clientes/promperu.png", alt: "PromPerú" },
+  { src: "/clientes/rocketbot.png", alt: "Rocketbot" },
+];
 
 export const techLogos: BrandLogo[] = [
   { src: "https://svgl.app/library/openai_wordmark_light.svg", alt: "OpenAI" },

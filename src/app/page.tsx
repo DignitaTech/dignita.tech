@@ -6,7 +6,6 @@ import { ShowcaseScroll } from "@/components/site/showcase-scroll";
 import { ServicesPipeline } from "@/components/site/services-pipeline";
 import { AreasCarousel } from "@/components/site/areas-carousel";
 import { Process } from "@/components/site/process";
-import { Testimonials } from "@/components/site/testimonials";
 import { CTA } from "@/components/site/cta";
 import { EcosystemBridge } from "@/components/site/ecosystem-bridge";
 import { Diagnostico } from "@/components/site/diagnostico";
@@ -23,7 +22,6 @@ export default function Home() {
         <ServicesPipeline />
         <AreasCarousel />
         <Process />
-        <Testimonials />
         <CTA />
         <EcosystemBridge />
         <Diagnostico />

@@ -123,6 +123,28 @@
   }
 }
 
+/* hero visual — órbitas CSS puras (transform-only, GPU) */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes core-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.1;
+  }
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -190,6 +212,27 @@
 /* logos: force monochrome silhouette that adapts to the UI */
 @utility logo-mono {
   filter: grayscale(1) brightness(0);
+}
+
+/* hero visual — orbit helpers */
+@utility animate-orbit {
+  animation: orbit var(--orbit-duration, 30s) linear infinite;
+}
+
+@utility animate-orbit-reverse {
+  animation: orbit var(--orbit-duration, 30s) linear infinite reverse;
+}
+
+@utility animate-core-pulse {
+  animation: core-pulse 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit,
+  .animate-orbit-reverse,
+  .animate-core-pulse {
+    animation: none;
+  }
 }
 
 .no-scrollbar::-webkit-scrollbar {
