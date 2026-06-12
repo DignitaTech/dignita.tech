@@ -1,6 +1,6 @@
 import { ScrollThread } from "@/components/site/scroll-thread";
 import { Hero } from "@/components/site/hero";
-import { Logos } from "@/components/site/logos";
+import { Logos, ClientLogos } from "@/components/site/logos";
 import { ValueProp } from "@/components/site/value-prop";
 import { ShowcaseScroll } from "@/components/site/showcase-scroll";
 import { ServicesPipeline } from "@/components/site/services-pipeline";
@@ -19,6 +19,7 @@ export default function Home() {
         <Logos />
         <ValueProp />
         <ShowcaseScroll />
+        <ClientLogos />
         <ServicesPipeline />
         <AreasCarousel />
         <Process />
