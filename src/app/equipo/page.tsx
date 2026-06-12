@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageShell } from "@/components/site/page-shell";
 import { Reveal } from "@/components/ui/reveal";
 import { equipo } from "@/lib/ecosystem";
@@ -27,9 +28,21 @@ export default function EquipoPage() {
         {equipo.map((m, i) => (
           <Reveal key={m.name} delayIndex={i % 3}>
             <article className="flex h-full flex-col items-center rounded-3xl border border-foreground/10 bg-card/60 p-8 text-center">
-              <div className="flex size-24 items-center justify-center rounded-full bg-gradient-to-br from-brand-from to-brand-to text-2xl font-semibold text-primary-foreground">
-                {m.initials}
-              </div>
+              {m.photo ? (
+                <div className="size-24 overflow-hidden rounded-full ring-2 ring-foreground/10">
+                  <Image
+                    src={m.photo}
+                    alt={m.name}
+                    width={96}
+                    height={96}
+                    className="h-full w-full object-cover object-top"
+                  />
+                </div>
+              ) : (
+                <div className="flex size-24 items-center justify-center rounded-full bg-gradient-to-br from-brand-from to-brand-to text-2xl font-semibold text-primary-foreground">
+                  {m.initials}
+                </div>
+              )}
               <h3 className="mt-5 text-lg font-semibold tracking-tight">{m.name}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{m.role}</p>
               {m.linkedin ? (

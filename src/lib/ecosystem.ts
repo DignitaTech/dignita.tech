@@ -41,6 +41,8 @@ export interface CatalogItem {
   process?: ProcessStep[];
   primaryCta?: ServiceCta;
   secondaryCta?: ServiceCta;
+  /** slugs de proyectos relacionados (para la sección Trabajos relacionados) */
+  relatedProjects?: string[];
   /** solo productos */
   sector?: string;
   accent?: string;
@@ -88,13 +90,20 @@ export const servicios: CatalogItem[] = [
     summary:
       "Mesa de ayuda y soporte de infraestructura para que tu operación nunca se detenga.",
     problem:
-      "Cuando un equipo, una red o un servicio se cae, cada minuto cuesta. Sin un soporte que responda, los problemas pequeños se vuelven paros grandes.",
+      "Cuando un equipo, una red o un servicio se cae, cada minuto cuesta. Sin un soporte que responda con velocidad y criterio, los problemas pequeños se convierten en paros grandes, pérdida de datos y equipos bloqueados que no pueden trabajar.",
     deliverables: [
       "Mesa de ayuda (help desk) para usuarios",
       "Soporte y monitoreo de infraestructura",
-      "Gestión de incidentes con SLA",
-      "Mantenimiento preventivo",
+      "Gestión de incidentes con SLA definido",
+      "Mantenimiento preventivo de equipos y redes",
+      "Gestión de accesos y licencias",
       "Respaldo y continuidad del negocio",
+    ],
+    process: [
+      { title: "Diagnóstico", description: "Auditamos tu infraestructura actual y definimos los niveles de soporte que necesitas." },
+      { title: "Implementación", description: "Configuramos la mesa de ayuda, herramientas de monitoreo y flujos de escalamiento." },
+      { title: "Operación continua", description: "Mesa de ayuda activa con SLA comprometidos y atención proactiva de incidentes." },
+      { title: "Mejora y reporte", description: "Análisis mensual de incidentes, tendencias y optimizaciones preventivas." },
     ],
     primaryCta: { label: "Solicitar soporte", href: "/contacto" },
     secondaryCta: { label: "Ir al portal de soporte", href: "https://soporte.dignita.tech", external: true },
@@ -110,13 +119,20 @@ export const servicios: CatalogItem[] = [
     summary:
       "Mantenimiento y continuidad de tus automatizaciones y bots en producción.",
     problem:
-      "Un bot que se rompe en silencio es peor que no tener bot: el proceso falla sin que nadie lo note. Las automatizaciones necesitan quien las cuide.",
+      "Un bot que se rompe en silencio es peor que no tener bot: el proceso falla sin que nadie lo note y el error se acumula. Las automatizaciones necesitan quien las cuide, las actualice y responda cuando algo cambia en los sistemas que integran.",
     deliverables: [
       "Monitoreo de bots y flujos en producción",
       "Corrección ante cambios de sistemas o interfaces",
       "Optimización y nuevas reglas de negocio",
       "Alertas y reportes de ejecución",
       "SLA de respuesta ante incidentes",
+      "Documentación actualizada de cada automatización",
+    ],
+    process: [
+      { title: "Inventario", description: "Levantamos todos los bots y flujos activos, su estado y su criticidad para el negocio." },
+      { title: "Monitoreo activo", description: "Instalamos alertas y supervisión en tiempo real para detectar fallos antes de que impacten." },
+      { title: "Respuesta ante incidentes", description: "Atendemos roturas y errores con tiempos de respuesta según SLA acordado." },
+      { title: "Mantenimiento preventivo", description: "Actualizamos reglas de negocio y adaptamos bots ante cambios en sistemas o interfaces." },
     ],
     primaryCta: { label: "Solicitar soporte RPA", href: "/contacto" },
     secondaryCta: { label: "Ir al portal de soporte RPA", href: "https://soporterpa.dignita.tech", external: true },
@@ -132,20 +148,22 @@ export const servicios: CatalogItem[] = [
     summary:
       "Sitios y aplicaciones web rápidas, modernas y orientadas a conversión.",
     problem:
-      "Una web lenta, vieja o que no convierte es plata que se va. Hoy el sitio es el primer vendedor de tu marca, y trabaja 24/7.",
+      "Una web lenta, vieja o que no convierte es plata que se va. Hoy el sitio es el primer vendedor de tu marca, trabaja 24/7 y es la primera impresión ante clientes, socios e inversores. Tener presencia digital no es suficiente: necesitas que funcione.",
     deliverables: [
       "Sitios y landing pages de alto rendimiento",
-      "Aplicaciones web a medida",
+      "Aplicaciones web y plataformas a medida",
       "Integraciones (pagos, CRM, automatización)",
       "SEO técnico y Core Web Vitals",
+      "Diseño UX/UI orientado a conversión",
       "Hosting, dominio y mantenimiento",
     ],
     process: [
-      { title: "Descubrimiento", description: "Entendemos negocio, audiencia y objetivos de conversión." },
-      { title: "Diseño", description: "Estructura, UX y dirección visual alineadas a la marca." },
-      { title: "Desarrollo", description: "Construcción rápida, accesible y optimizada." },
-      { title: "Lanzamiento", description: "Publicación, medición y mejora continua." },
+      { title: "Descubrimiento", description: "Entendemos negocio, audiencia y objetivos de conversión antes de escribir una línea." },
+      { title: "Diseño", description: "Estructura, UX y dirección visual alineadas a la marca y al objetivo del sitio." },
+      { title: "Desarrollo", description: "Construcción rápida, accesible y optimizada en tecnología moderna." },
+      { title: "Lanzamiento", description: "Publicación, configuración de analíticas y mejora continua post-lanzamiento." },
     ],
+    relatedProjects: ["mahescorp", "costa-rica-unlocked"],
     primaryCta: { label: "Cotizar mi web", href: "/contacto" },
   },
   {
@@ -159,14 +177,22 @@ export const servicios: CatalogItem[] = [
     summary:
       "Identidad de marca con criterio: estrategia, naming y sistema visual.",
     problem:
-      "Una marca sin sistema se ve distinta en cada lugar y no genera recuerdo. La identidad no es un logo: es coherencia con intención.",
+      "Una marca sin sistema se ve distinta en cada lugar y no genera recuerdo. Una identidad improvisada diluye la confianza, confunde al cliente y obliga a rediseñar una y otra vez. La identidad no es un logo: es coherencia con intención.",
     deliverables: [
       "Estrategia y posicionamiento de marca",
       "Naming",
       "Logotipo y sistema visual",
       "Paleta, tipografía y aplicaciones",
-      "Brandbook",
+      "Manual de marca (brandbook)",
+      "Versiones adaptadas para digital, impreso y señalética",
     ],
+    process: [
+      { title: "Estrategia", description: "Definimos posicionamiento, audiencia objetivo y atributos de marca que la diferencian." },
+      { title: "Concepto", description: "Exploramos direcciones visuales y seleccionamos la que mejor representa la marca." },
+      { title: "Sistema", description: "Desarrollamos logotipo, paleta, tipografía y las aplicaciones clave de la identidad." },
+      { title: "Entrega", description: "Manual de marca completo y archivos listos para usar en todos los formatos y contextos." },
+    ],
+    relatedProjects: ["costa-rica-unlocked"],
     primaryCta: { label: "Ver proyectos de branding", href: "/proyectos" },
     secondaryCta: { label: "Quiero mi marca", href: "/contacto" },
   },
@@ -375,6 +401,7 @@ export const proyectos: Project[] = [
       "Partimos de un logotipo manuscrito con personalidad y lo anclamos a una paleta tomada del país: azul océano, verde selva, rojo y dorado. La tipografía Proxima Nova ordena la información sin apagar la energía del lettering.",
     result:
       "Un sistema cálido y memorable que viaja bien: del merchandising a la flota, del empaque a la señalética, todo se reconoce como Costa Rica Unlocked.",
+    liveUrl: "https://costaricaunlocked.com",
     services: ["Estrategia de marca", "Logotipo & lettering", "Identidad visual", "Aplicaciones de marca"],
     palette: [
       { name: "Azul océano", hex: "#00629A" },
@@ -429,6 +456,26 @@ export const proyectos: Project[] = [
       { src: "/branding/kipi-cash/cap.jpg", alt: "Gorra con la marca Kipi.cash" },
       { src: "/branding/kipi-cash/tee.jpg", alt: "Camiseta con la marca Kipi.cash" },
     ],
+  },
+  {
+    slug: "mahescorp",
+    title: "Mahescorp",
+    category: "Desarrollo web",
+    sector: "Educación & B2B",
+    year: "2024",
+    description: "Academia digital a medida para empresa B2B.",
+    accent: "#1A6B8A",
+    published: true,
+    liveUrl: "https://mahescorp.com",
+    summary:
+      "Academia digital construida a medida para Mahescorp — la plataforma que luego evolucionó en el producto Nivela Tu Academy.",
+    challenge:
+      "Mahescorp necesitaba digitalizar su formación sin depender de herramientas genéricas que no reflejaban su marca ni se adaptaban a su modelo B2B de clientes corporativos.",
+    approach:
+      "Diseñamos y desarrollamos una plataforma de academia digital completa: catálogo de cursos, gestión de alumnos, pagos y contenido con su propia identidad. La solidez de la solución fue la semilla del producto Nivela Tu Academy.",
+    result:
+      "Academia operativa con identidad propia, gestión autónoma y una base tecnológica que hoy impulsa Nivela Tu Academy como producto SaaS.",
+    services: ["Desarrollo web", "Plataforma digital", "UX/UI"],
   },
   {
     slug: "mi-rest-con-ia",
@@ -537,10 +584,16 @@ export interface TeamMember {
   name: string;
   role: string;
   initials: string;
+  photo?: string;
   linkedin?: string;
 }
 
 export const equipo: TeamMember[] = [
-  { name: "Leonidas Yauri", role: "Fundador · Automatización e IA", initials: "LY" },
+  {
+    name: "Leonidas Yauri",
+    role: "CEO · Consultor Senior en Product Design & Dev Full Stack, Marketing Strategy",
+    initials: "LY",
+    photo: "/equipo/leonidas-yauri.png",
+  },
   { name: "Alexander Castañeda", role: "Co-fundador", initials: "AC" },
 ];
