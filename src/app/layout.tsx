@@ -40,11 +40,6 @@ export const metadata: Metadata = {
     "back office",
     "RPA con criterio",
   ],
-  icons: {
-    icon: "/logo-dignita.png",
-    shortcut: "/logo-dignita.png",
-    apple: "/logo-dignita.png",
-  },
   openGraph: {
     type: "website",
     locale: "es_ES",
