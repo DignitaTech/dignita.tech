@@ -42,3 +42,9 @@ next-env.d.ts
 
 # raw branding source assets (curated copies live in public/branding)
 /branding/
+
+# raw source assets (curated copies live in public/)
+/logos clientes/
+/logo dignita/
+/consultor leonidas copia.png
+/firma leo.png
