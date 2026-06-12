@@ -593,7 +593,7 @@ export const equipo: TeamMember[] = [
     name: "Leonidas Yauri",
     role: "CEO · Consultor Senior en Product Design & Dev Full Stack, Marketing Strategy",
     initials: "LY",
-    photo: "/equipo/leonidas-yauri.png",
+    photo: "/equipo/leonidas-yauri.webp",
   },
   { name: "Alexander Castañeda", role: "Co-fundador", initials: "AC" },
 ];
